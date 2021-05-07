@@ -19,6 +19,18 @@ body {
   font-family: "Lato", sans-serif;
 }
 
+input.date {
+  border-radius: 10px;
+  width: 36vh;
+  height: auto;
+  transition: all ease 400ms;
+  box-shadow: 0px 0px 1px 1px Violet;
+}
+
+input.date:hover {
+  box-shadow: 0px 0px 5px 5px Violet;
+}
+
 .container {
   margin: 30px auto;
   width: 350px;
@@ -75,6 +87,16 @@ h4 {
 label {
   display: inline-block;
   margin: 10px 0;
+}
+
+input[type="date"] {
+  border: 1px solid #dedede;
+  border-radius: 2px;
+  display: block;
+  font-size: 8px;
+  padding: 10px;
+  width: 100%;
+  font-weight: 100;
 }
 
 input[type="text"],
@@ -148,4 +170,96 @@ input[type="number"] {
 
 .list li:hover .delete-btn {
   opacity: 1;
+}
+
+.form-date {
+  position: relative;
+}
+.form-date:after {
+  z-index: -1;
+  content: "📅";
+  display: block;
+  font-size: 2rem;
+  color: STEELBLUE;
+  background: none;
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  top: 13px;
+  right: -7px;
+}
+
+.enchilada::-webkit-calendar-picker-indicator {
+  opacity: 0;
+}
+.enchilada,
+.enchilada:focus {
+  background: rgba(0, 0, 0, 0);
+}
+
+::-webkit-datetime-edit {
+  padding: 0.2em;
+  font-size: 2rem;
+}
+
+::-webkit-datetime-edit-fields-wrapper {
+  background: #f0eabd;
+  border-radius: 10px;
+  padding: 7px;
+}
+::-webkit-datetime-edit-text {
+  color: silver;
+  padding: 0 0.6em;
+}
+::-webkit-datetime-edit-day-field {
+  color: DeepPink;
+}
+::-webkit-datetime-edit-month-field {
+  color: LimeGreen;
+}
+
+::-webkit-datetime-edit-year-field {
+  color: MediumSlateBlue;
+}
+::-webkit-inner-spin-button {
+  opacity: 1;
+  font-size: 2rem;
+  margin-top: 5px;
+}
+::-webkit-calendar-picker-indicator {
+  background: DarkSlateGray;
+  color: Cornsilk;
+  opacity: 1;
+  font-size: 1.5rem;
+  transition: all ease 400ms;
+  transform: scale(1);
+  margin-left: 5px;
+}
+::-webkit-calendar-picker-indicator:hover {
+  background: Teal;
+  color: Cyan;
+  transform: scale(1.2);
+  cursor: pointer;
+}
+input::-webkit-datetime-edit-year-field[enabled] {
+  font-size: 5rem;
+}
+
+input::-webkit-datetime-edit {
+  background: PALEVIOLETRED;
+  border-radius: 10px;
+}
+
+input::-webkit-datetime-edit-hour-field {
+  background: AQUAMARINE;
+}
+input::-webkit-datetime-edit-millisecond-field {
+  background: AQUAMARINE;
+}
+input::-webkit-datetime-edit-minute-field {
+  background: AQUAMARINE;
+}
+
+input::-webkit-datetime-edit-week-field {
+  background: AQUAMARINE;
 }

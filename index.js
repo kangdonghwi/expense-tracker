@@ -4,6 +4,7 @@ const money_minus = document.getElementById('money-minus');
 const list = document.getElementById('list');
 const form = document.getElementById('form');
 const text = document.getElementById('text');
+const date = document.querySelector('.date');
 const amount = document.getElementById('amount');
 
 let data = {
@@ -39,25 +40,27 @@ function add(e) {
 
     const transaction = {
         id:generateID(),
+        date: date.value,
         text: text.value,
         amount: +amount.value
     }
 
     transactions.push(transaction);
 
-    addTransactionDOM(transaction);
-
-    updateValues();
-    
     updateLocalStorage();
+    
+    updateValues();
+
+    addTransactionDOM(transaction);
 
     addChart();
 
+    date.value = '';
     text.value = '';
     amount.value = '';
 }
 
-function addChart(){
+function addChart() {
     let chartTransactions = transactions.filter(a => a.amount<0);
 
     let chartLabels = chartTransactions.map(a=> a.text)
@@ -69,11 +72,24 @@ function addChart(){
     myChart.update();
 }
 
+function sortByDate() {
+    return transactions.sort((a, b) => {
+        if (a.date > b.date) {
+          return 1
+        } else if (a.date < b.date) {
+          return -1
+        } else {
+          return 0
+        }
+    });
+}
+
 function generateID() {
     return Math.floor(Math.random() * 100000000);
   }
 
 function updateValues(){
+
     const amounts = transactions.map(transaction => transaction.amount);
 
     const total = amounts.reduce((acc, item) => (acc += item),0);
@@ -95,7 +111,7 @@ function addTransactionDOM(transaction){
     item.classList.add(transaction.amount < 0 ? 'minus' : 'plus');
 
     item.innerHTML = `
-        ${transaction.text} <span> ${sign}${Math.abs(transaction.amount)}</span>
+       ${transaction.date}<br/>${transaction.text} <span> ${sign}${Math.abs(transaction.amount)}</span>
         <button class="delete-btn" onclick="removeTransacion(${transaction.id})">X</button>
     `;
 
@@ -116,6 +132,7 @@ function updateLocalStorage(){
 
 
 function init(){
+    sortByDate();
     list.innerHTML = '';
     transactions.forEach(addTransactionDOM);
     
