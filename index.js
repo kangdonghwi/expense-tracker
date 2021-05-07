@@ -9,10 +9,10 @@ const amount = document.getElementById('amount');
 let data = {
     labels: [],
     datasets: [{
-      label: 'My First Dataset',
+      label: '지출내역',
       data: [],
       backgroundColor: [
-        'rgba(255, 99, 132, 0.2)',
+        'rgba(73, 16, 28, 0.2)',
         'rgba(54, 162, 235, 0.2)',
         'rgba(255, 206, 86, 0.2)',
         'rgba(75, 192, 192, 0.2)',
@@ -58,14 +58,14 @@ function add(e) {
 }
 
 function addChart(){
-    let chartTransactions = transactions.map(a => a);
+    let chartTransactions = transactions.filter(a => a.amount<0);
 
-    for(let i=0; i<chartTransactions.length;i++){
-        if(chartTransactions[i].amount < 0){
-            myChart.data.labels.push(chartTransactions[i].text);
-            myChart.data.datasets[0].data.push(chartTransactions[i].amount);
-        }
-    }
+    let chartLabels = chartTransactions.map(a=> a.text)
+    let chartAmount = chartTransactions.map(a=> a.amount)
+
+    myChart.data.labels = chartLabels;
+    myChart.data.datasets[0].data = chartAmount;
+    
     myChart.update();
 }
 
